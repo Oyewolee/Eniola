@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Eniola ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        background: linear-gradient(to bottom right, #0b0014, #1a0026);
+        font-family: "Poppins", sans-serif;
+        color: white;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Floating Roses */
+    .rose {
+        position: absolute;
+        animation: fall 8s linear infinite;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-150px) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(900px) rotate(360deg); opacity: 0; }
+    }
+
+    /* Message Box */
+    #messageBox {
+        width: 90%;
+        max-width: 650px;
+        font-size: 28px;
+        line-height: 1.6;
+        text-align: center;
+        text-shadow: 0 0 15px #ff8fb3;
+        padding: 10px;
+        z-index: 3;
+    }
+
+    .glow {
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff6fa0; }
+        to { text-shadow: 0 0 25px #ff3f85; }
+    }
+
+    /* Fading-in Picture */
+    #herImage {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        width: 220px;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 0 0 25px #ff6fa0;
+        opacity: 0;
+        animation: fadeIn 6s ease forwards 5s; /* fades in after 5 seconds */
+        z-index: 2;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Romantic Background Music -->
+<audio autoplay loop>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/ccCommunity/Komiku/The_Best_Music/Komiku_-_12_-_You_And_Me.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Her Picture -->
+<img id="herImage" src="eniola.jpg" alt="Eniola">
+
+<!-- Message Box -->
+<div id="messageBox" class="glow"></div>
+
+<script>
+    /* Text Messages */
+    const messages = [
+        "Eniola…❤️",
+        "Every moment with you feels like magic.",
+        "You make the world softer…",
+        "and my heart lighter.",
+        "The way you talk about me…",
+        "the way you care…",
+        "the way you love…",
+        "it melts me every single time.",
+        "You are rare.",
+        "You are beautiful.",
+        "You are my peace.",
+        "And Eniola…",
+        "I love you more than these words can ever express. ❤️"
+    ];
+
+    let currentMessage = 0;
+    let currentChar = 0;
+    const box = document.getElementById("messageBox");
+
+    function typeMessage() {
+        if (currentMessage < messages.length) {
+            let text = messages[currentMessage];
+
+            box.innerHTML = text.substring(0, currentChar + 1);
+
+            currentChar++;
+
+            if (currentChar === text.length) {
+                currentMessage++;
+                currentChar = 0;
+                setTimeout(typeMessage, 1300);
+            } else {
+                setTimeout(typeMessage, 60);
+            }
+        }
+    }
+
+    typeMessage();
+
+    /* Falling Roses */
+    function createRose() {
+        const rose = document.createElement("div");
+        rose.classList.add("rose");
+        rose.innerHTML = "🌹";
+
+        rose.style.left = Math.random() * window.innerWidth + "px";
+        rose.style.top = "-50px";
+        rose.style.fontSize = (24 + Math.random() * 30) + "px";
+        rose.style.animationDuration = (5 + Math.random() * 4) + "s";
+
+        document.body.appendChild(rose);
+        setTimeout(() => rose.remove(), 9000);
+    }
+
+    setInterval(createRose, 400);
+</script>
+
+</body>
+</html>
